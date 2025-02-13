@@ -131,7 +131,7 @@ class ConversationHandlerIntegrationTest : BaseWireMockTest() {
     private fun createConversation(agent: String) =
         Conversation(
             systemContext = SystemContext(channelId = "web"),
-            userContext = UserContext(userId = "user-id", userToken = "user-token"),
+            userContext = UserContext(userId = "user-id", userToken = "user-token", profile = listOf()),
             inputContext =
                 InputContext(
                     messages = listOf(Message(role = "user", content = "Hello")),

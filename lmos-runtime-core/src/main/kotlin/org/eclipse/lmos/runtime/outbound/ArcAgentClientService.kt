@@ -8,11 +8,7 @@ package org.eclipse.lmos.runtime.outbound
 
 import kotlinx.coroutines.flow.toCollection
 import org.eclipse.lmos.arc.agent.client.graphql.GraphQlAgentClient
-import org.eclipse.lmos.arc.api.AgentRequest
-import org.eclipse.lmos.arc.api.ConversationContext
-import org.eclipse.lmos.arc.api.ProfileEntry
-import org.eclipse.lmos.arc.api.SystemContextEntry
-import org.eclipse.lmos.arc.api.UserContext
+import org.eclipse.lmos.arc.api.*
 import org.eclipse.lmos.runtime.core.constants.LmosRuntimeConstants
 import org.eclipse.lmos.runtime.core.exception.AgentClientException
 import org.eclipse.lmos.runtime.core.model.Address
@@ -52,8 +48,7 @@ class ArcAgentClientService : AgentClientService {
                                 UserContext(
                                     userId = conversation.userContext.userId,
                                     userToken = conversation.userContext.userToken,
-                                    profile =
-                                        conversation.userContext.contextParams.map { (key, value) ->
+                                    profile = conversation.userContext.profile.map { (key, value) ->
                                             ProfileEntry(key, value)
                                         }.toList(),
                                 ),

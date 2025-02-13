@@ -11,12 +11,7 @@ import kotlinx.coroutines.runBlocking
 import org.eclipse.lmos.arc.agent.client.graphql.GraphQlAgentClient
 import org.eclipse.lmos.arc.api.AgentResult
 import org.eclipse.lmos.arc.api.Message
-import org.eclipse.lmos.runtime.core.model.Address
-import org.eclipse.lmos.runtime.core.model.AssistantMessage
-import org.eclipse.lmos.runtime.core.model.Conversation
-import org.eclipse.lmos.runtime.core.model.InputContext
-import org.eclipse.lmos.runtime.core.model.SystemContext
-import org.eclipse.lmos.runtime.core.model.UserContext
+import org.eclipse.lmos.runtime.core.model.*
 import org.eclipse.lmos.runtime.outbound.ArcAgentClientService
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -31,7 +26,7 @@ class ArcAgentClientServiceTest {
                 Conversation(
                     inputContext = InputContext(messages = listOf(Message("user", "Hello"))),
                     systemContext = SystemContext(channelId = "testChannel"),
-                    userContext = UserContext(userId = "user123", userToken = "token123"),
+                    userContext = UserContext(userId = "user123", userToken = "token123", profile = listOf()),
                 )
             val address = Address(uri = "localhost")
 

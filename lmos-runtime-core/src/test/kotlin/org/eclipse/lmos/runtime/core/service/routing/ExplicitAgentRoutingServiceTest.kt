@@ -24,7 +24,7 @@ class ExplicitAgentRoutingServiceTest {
                             explicitAgent = "AgentX",
                         ),
                     systemContext = SystemContext(channelId = "channel1"),
-                    userContext = UserContext(userId = "user1", userToken = "token1"),
+                    userContext = UserContext(userId = "user1", userToken = "token1", profile = listOf()),
                 )
 
             val service = ExplicitAgentRoutingService()
@@ -50,6 +50,7 @@ class ExplicitAgentRoutingServiceTest {
                     UserContext(
                         userId = "user1",
                         userToken = null,
+                        profile = listOf()
                     ),
             )
         val service = ExplicitAgentRoutingService()
@@ -77,6 +78,7 @@ class ExplicitAgentRoutingServiceTest {
                     UserContext(
                         userId = "user1",
                         userToken = null,
+                        profile = listOf()
                     ),
             )
         val service = ExplicitAgentRoutingService()

@@ -7,7 +7,7 @@
 lmos:
   runtime:
     agent-registry:
-      base-url: ${AGENT_REGISTRY_URL:http://lmos-operator:8080}
+      base-url: http://localhost:8200
     router:
       type: EXPLICIT
     open-ai:

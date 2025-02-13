@@ -57,7 +57,7 @@ class ConversationControllerTest {
                         explicitAgent = "agent1",
                     ),
                 systemContext = SystemContext(channelId = "channel1"),
-                userContext = UserContext(userId = "user1", userToken = "token1"),
+                userContext = UserContext(userId = "user1", userToken = "token1", profile = listOf()),
             )
 
         assistantMessage =
@@ -107,7 +107,7 @@ class ConversationControllerTest {
                             messages = listOf(),
                         ),
                     systemContext = SystemContext(channelId = "channel1"),
-                    userContext = UserContext(userId = "user1", userToken = "token1"),
+                    userContext = UserContext(userId = "user1", userToken = "token1", profile = listOf()),
                 )
 
             coEvery {

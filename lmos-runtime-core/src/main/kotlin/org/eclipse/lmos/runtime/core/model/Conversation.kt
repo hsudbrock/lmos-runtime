@@ -35,7 +35,14 @@ data class SystemContext(
 data class UserContext(
     val userId: String,
     val userToken: String?,
-    val contextParams: Map<String, String> = mapOf(),
+    val profile: List<ProfileEntry>,
+)
+
+@Serializable
+@SerialName("profileEntry")
+data class ProfileEntry(
+    val key: String,
+    val value: String,
 )
 
 sealed class ChatMessage {
