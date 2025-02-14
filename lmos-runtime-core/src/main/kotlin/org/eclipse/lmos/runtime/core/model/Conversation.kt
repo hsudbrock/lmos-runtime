@@ -35,7 +35,7 @@ data class SystemContext(
 data class UserContext(
     val userId: String,
     val userToken: String?,
-    val profile: List<ProfileEntry>,
+    val profile: List<ProfileEntry>?,
 )
 
 @Serializable

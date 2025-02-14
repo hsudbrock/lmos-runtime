@@ -48,9 +48,9 @@ class ArcAgentClientService : AgentClientService {
                                 UserContext(
                                     userId = conversation.userContext.userId,
                                     userToken = conversation.userContext.userToken,
-                                    profile = conversation.userContext.profile.map { (key, value) ->
+                                    profile = conversation.userContext.profile?.map { (key, value) ->
                                             ProfileEntry(key, value)
-                                        }.toList(),
+                                        }?.toList() ?: listOf(),
                                 ),
                             messages = conversation.inputContext.messages,
                         ),

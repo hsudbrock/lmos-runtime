@@ -28,8 +28,8 @@ dependencies {
     implementation("ai.ancf.lmos:kotlin-wot-binding-http:1.0-SNAPSHOT")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.0")
 
     testImplementation(testFixtures(project(":lmos-runtime-core")))
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
