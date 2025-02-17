@@ -41,6 +41,7 @@ class DefaultConversationHandler(
         conversationId: String,
         tenantId: String,
         turnId: String,
+        eventHandler: ...
     ): AssistantMessage {
         log.debug("Request Received, conversationId: $conversationId, turnId: $turnId")
         val routingInformation =
@@ -69,3 +70,5 @@ class DefaultConversationHandler(
         return agentResponse
     }
 }
+
+
