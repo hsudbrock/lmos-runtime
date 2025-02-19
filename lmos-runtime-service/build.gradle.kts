@@ -25,7 +25,8 @@ dependencies {
 
     implementation("ai.ancf.lmos:kotlin-wot-spring-boot-starter:1.0-SNAPSHOT")
     implementation("ai.ancf.lmos:kotlin-wot-lmos-protocol:1.0-SNAPSHOT")
-    implementation("ai.ancf.lmos:kotlin-wot-binding-http:1.0-SNAPSHOT")
+    // implementation("ai.ancf.lmos:kotlin-wot-binding-http:1.0-SNAPSHOT")
+    implementation("ai.ancf.lmos:kotlin-wot-binding-websocket:1.0-SNAPSHOT")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.0")
