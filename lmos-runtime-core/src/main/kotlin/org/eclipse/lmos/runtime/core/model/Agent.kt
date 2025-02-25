@@ -11,7 +11,7 @@ data class Agent(
     val version: String,
     val description: String,
     val capabilities: List<AgentCapability>,
-    val addresses: Set<Address>,
+    val wotThingDescriptionId: String,
 )
 
 data class Address(
@@ -31,7 +31,7 @@ class AgentBuilder {
     private var version: String = ""
     private var description: String = ""
     private var capabilities: MutableList<AgentCapability> = mutableListOf()
-    private var addresses: MutableSet<Address> = mutableSetOf()
+    private var wotThingDescriptionId: String = ""
 
     fun name(name: String) = apply { this.name = name }
 
@@ -39,13 +39,11 @@ class AgentBuilder {
 
     fun description(description: String) = apply { this.description = description }
 
+    fun wotThingDescriptionId(wotThingDescriptionId: String) = apply { this.wotThingDescriptionId = wotThingDescriptionId }
+
     fun addCapability(capability: AgentCapability) = apply { this.capabilities.add(capability) }
 
     fun capabilities(capabilities: List<AgentCapability>) = apply { this.capabilities.addAll(capabilities) }
-
-    fun addAddress(address: Address) = apply { this.addresses.add(address) }
-
-    fun addresses(addresses: Set<Address>) = apply { this.addresses.addAll(addresses) }
 
     fun build(): Agent {
         return Agent(
@@ -53,7 +51,7 @@ class AgentBuilder {
             version = version,
             description = description,
             capabilities = capabilities.toList(),
-            addresses = addresses,
+            wotThingDescriptionId = wotThingDescriptionId,
         )
     }
 }

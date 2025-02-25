@@ -4,10 +4,24 @@
 # // SPDX-License-Identifier: Apache-2.0
 #
 
+wot:
+  servient:
+    websocket:
+      server:
+        enabled: false
+        # host: localhost
+        port: 8182
+    http:
+      server:
+        enabled: true
+        # host: localhost
+        port: 8182
+
 lmos:
   runtime:
     agent-registry:
-      base-url: http://localhost:8200
+      base-url: http://localhost:8180
+      wot-base-url: http://localhost:8181
     router:
       type: EXPLICIT
     open-ai:
@@ -45,7 +59,7 @@ logging:
 
 management:
   server:
-    port: 9090
+    port: 9095
   endpoints:
     web:
       base-path: /

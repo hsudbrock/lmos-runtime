@@ -13,6 +13,7 @@ open class LmosRuntimeConfig(
 ) {
     data class AgentRegistry(
         val baseUrl: String,
+        val wotBaseUrl: String
     )
 
     data class OpenAI(

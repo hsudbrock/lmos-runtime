@@ -62,7 +62,7 @@ class DefaultConversationHandler(
                 conversationId,
                 turnId,
                 agent.name,
-                agent.addresses.random(),
+                agent.wotThingDescriptionId,
                 routingInformation.subset,
             )
         log.info("Agent Response: $agentResponse")

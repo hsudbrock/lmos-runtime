@@ -6,6 +6,8 @@
 
 package org.eclipse.lmos.runtime.config
 
+import ai.ancf.lmos.wot.Wot
+import org.eclipse.lmos.runtime.core.LmosRuntimeConfig
 import org.eclipse.lmos.runtime.core.cache.LmosRuntimeTenantAwareCache
 import org.eclipse.lmos.runtime.core.cache.TenantAwareInMemoryCache
 import org.eclipse.lmos.runtime.core.inbound.ConversationHandler
@@ -32,8 +34,8 @@ open class LmosRuntimeAutoConfiguration(
 ) {
     @Bean
     @ConditionalOnMissingBean(AgentClientService::class)
-    open fun agentClientService(): AgentClientService {
-        return ArcAgentClientService()
+    open fun agentClientService(wot: Wot, lmosRuntimeConfig: LmosRuntimeConfig): AgentClientService {
+        return ArcAgentClientService(wot, lmosRuntimeConfig)
     }
 
     @Bean

@@ -15,8 +15,6 @@ import org.eclipse.lmos.router.llm.DefaultModelClientProperties
 import org.eclipse.lmos.router.llm.LLMAgentRoutingSpecsResolver
 import org.eclipse.lmos.runtime.core.LmosRuntimeConfig
 import org.eclipse.lmos.runtime.core.model.Agent
-import org.eclipse.lmos.runtime.core.model.AgentBuilder
-import org.eclipse.lmos.runtime.core.model.AgentCapability
 import org.eclipse.lmos.runtime.core.model.Conversation
 import org.eclipse.lmos.runtime.core.service.outbound.AgentRoutingService
 import org.slf4j.LoggerFactory
@@ -34,7 +32,7 @@ class LmosAgentRoutingService(private val lmosRuntimeConfig: LmosRuntimeConfig) 
         val agentRoutingSpec =
             withContext(Dispatchers.IO) { resolveAgent(agentRoutingSpecResolver, context, input) }
         log.info("Resolved agent: $agentRoutingSpec")
-        return agentRoutingSpec?.toAgent() ?: throw AgentRoutingSpecResolverException("No agent resolved for user query")
+        return agentList.firstOrNull { it.name == agentRoutingSpec?.name } ?: throw AgentRoutingSpecResolverException("No agent resolved for user query")
     }
 
     fun resolveAgent(
@@ -100,7 +98,11 @@ class LmosAgentRoutingService(private val lmosRuntimeConfig: LmosRuntimeConfig) 
 
 fun List<Agent>.toAgentRoutingSpec(): List<AgentRoutingSpec> {
     return this.map { agent ->
-        AgentRoutingSpecBuilder().name(agent.name).version(agent.version).description(agent.description).apply {
+        AgentRoutingSpecBuilder()
+            .name(agent.name)
+            .version(agent.version)
+            .address(Address(protocol = "http", uri = "some-fake-uri-for-the-sake-of-having-one"))
+            .description(agent.description).apply {
             agent.capabilities.map { agentCapability ->
                 addCapability(
                     Capability(
@@ -110,24 +112,6 @@ fun List<Agent>.toAgentRoutingSpec(): List<AgentRoutingSpec> {
                     ),
                 )
             }
-            agent.addresses.map { address ->
-                address(Address(address.protocol, address.uri))
-            }
         }.build()
     }
 }
-
-fun AgentRoutingSpec.toAgent(): Agent =
-    AgentBuilder()
-        .name(name)
-        .description(description)
-        .version(version)
-        .addresses(addresses.map { address -> org.eclipse.lmos.runtime.core.model.Address(address.protocol, address.uri) }.toSet())
-        .apply {
-            capabilities(
-                capabilities.map { capability ->
-                    AgentCapability(capability.name, capability.version, capability.description)
-                },
-            )
-        }
-        .build()

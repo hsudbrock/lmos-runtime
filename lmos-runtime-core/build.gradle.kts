@@ -27,6 +27,10 @@ dependencies {
     api("org.eclipse.lmos:lmos-router-llm:$lmosRouterVersion")
     api("org.eclipse.lmos:arc-agent-client:$arcVersion")
     api("org.eclipse.lmos:arc-api:$arcVersion")
+    api("ai.ancf.lmos:kotlin-wot:1.0-SNAPSHOT")
+    api("ai.ancf.lmos:kotlin-wot-lmos-protocol:1.0-SNAPSHOT")
+    api("ai.ancf.lmos:kotlin-wot-binding-http:1.0-SNAPSHOT")
+    api("ai.ancf.lmos:kotlin-wot-binding-websocket:1.0-SNAPSHOT")
 
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
 

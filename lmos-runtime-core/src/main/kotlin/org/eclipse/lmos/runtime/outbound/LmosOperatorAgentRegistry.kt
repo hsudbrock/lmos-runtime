@@ -21,7 +21,6 @@ import org.eclipse.lmos.runtime.core.constants.LmosRuntimeConstants.SUBSET
 import org.eclipse.lmos.runtime.core.exception.InternalServerErrorException
 import org.eclipse.lmos.runtime.core.exception.NoRoutingInfoFoundException
 import org.eclipse.lmos.runtime.core.exception.UnexpectedResponseException
-import org.eclipse.lmos.runtime.core.model.Address
 import org.eclipse.lmos.runtime.core.model.Agent
 import org.eclipse.lmos.runtime.core.model.AgentBuilder
 import org.eclipse.lmos.runtime.core.model.AgentCapability
@@ -140,6 +139,7 @@ data class CapabilityGroup(
     val name: String,
     val description: String,
     val capabilities: List<Capability>,
+    val wotThingDescriptionId: String
 )
 
 @Serializable
@@ -147,20 +147,19 @@ data class Capability(
     val name: String,
     val requiredVersion: String,
     val providedVersion: String,
-    val description: String,
-    val host: String,
+    val description: String
 )
 
 fun ChannelRouting.toAgent(): List<Agent> {
     val agentVersion = this.metadata.labels.version
-    return this.spec.capabilityGroups.map { agent ->
+    return this.spec.capabilityGroups.map { capabilityGroup ->
         AgentBuilder()
-            .name(agent.name)
-            .description(agent.description)
+            .name(capabilityGroup.name)
+            .description(capabilityGroup.description)
             .version(agentVersion)
+            .wotThingDescriptionId(capabilityGroup.wotThingDescriptionId)
             .apply {
-                agent.capabilities.firstOrNull()?.let { addAddress(Address(uri = it.host)) }
-                agent.capabilities.forEach { capability ->
+                capabilityGroup.capabilities.forEach { capability ->
                     addCapability(
                         AgentCapability(name = capability.name, version = capability.providedVersion, description = capability.description),
                     )
