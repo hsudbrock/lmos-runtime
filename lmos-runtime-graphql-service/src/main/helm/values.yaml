@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/eclipse-lmos/lmos-runtime-graphql
-  pullPolicy: IfNotPresent
+  repository: ghcr.io/hsudbrock/lmos-runtime-graphql
+  pullPolicy: Always
 
 nameOverride: "lmos-runtime"
 fullnameOverride: "lmos-runtime"
